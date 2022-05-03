@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
 type Options = {
   onProcess: (loaded: number, totle: number) => {};
@@ -41,9 +41,9 @@ const GlbLoader = (url: string, options: Options) => {
   return new Promise((res, rej) => {
     loader.load(
       url,
-      (eventTarget) => {
+      (eventTarget: GLTF) => {
         const mixers: THREE.AnimationMixer[] = [];
-        const { scene: model } = eventTarget;
+        const model: THREE.Group = eventTarget.scene;
 
         eventTarget.animations.forEach((clip) => {
           const ani = new THREE.AnimationMixer(model);

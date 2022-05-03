@@ -1,6 +1,6 @@
 {
   "name": "lesca-glb-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "load glb file simplified.",
   "main": "lib/index.js",
   "scripts": {

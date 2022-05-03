@@ -13,7 +13,7 @@ const codes = [
     code: `import GlbLoader from '${name}';
 import Avatar from './Athlete.glb';
 
-new GlbLoader(Avatar).then((e) => {
+GlbLoader(Avatar).then((e) => {
   const { model, mixer, eventTarget } = e;
 
 

@@ -1,6 +1,6 @@
 import Webgl from 'lesca-webgl-threejs';
 import { useEffect, useRef } from 'react';
-import glbLoader from '../../lib';
+import GlbLoader from '../../lib';
 import Avatar from './Athlete.glb';
 
 const config = {
@@ -38,7 +38,7 @@ const Demo = () => {
 
       const { scene, enterframe, clock } = webgl;
 
-      new glbLoader(Avatar).then((e) => {
+      GlbLoader(Avatar).then((e) => {
         const { model, mixers } = e;
         const mesh = model;
 

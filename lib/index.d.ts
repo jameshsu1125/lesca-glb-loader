@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 declare type Options = {
     onProcess: (loaded: number, totle: number) => {};
     loop: boolean;
@@ -10,5 +12,10 @@ declare type Options = {
         clearcoatRoughness: number;
     };
 };
-declare const GlbLoader: (url: string, options: Options) => Promise<unknown>;
+export declare type GMM = {
+    gltf: GLTF;
+    model: THREE.Group;
+    mixers: THREE.AnimationMixer[];
+};
+declare const GlbLoader: (url: string, options: Options) => Promise<GMM>;
 export default GlbLoader;

@@ -24,8 +24,8 @@ npm install lesca-glb-loader --save
 import GlbLoader from 'lesca-glb-loader';
 import Avatar from './Athlete.glb';
 
-new GlbLoader(Avatar).then((e) => {
-  const { model, mixer, eventTarget } = e;
+GlbLoader(Avatar).then((e) => {
+  const { model, mixer, gltf } = e;
 
   const scale = 80;
   model.scale.set(scale, scale, scale);
@@ -45,7 +45,7 @@ new GlbLoader(Avatar).then((e) => {
 ### Parameters
 
 ```js
-new GlbLoader(url, options).then((e) => {
+GlbLoader(url, options).then((e) => {
   // get module here
 });
 ```

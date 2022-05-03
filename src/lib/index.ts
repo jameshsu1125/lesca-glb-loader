@@ -28,13 +28,13 @@ const defaultOptions: Options = {
   },
 };
 
-type Output = {
+export type GMM = {
+  gltf: GLTF;
   model: THREE.Group;
   mixers: THREE.AnimationMixer[];
-  gltf: GLTF;
 };
 
-const GlbLoader = (url: string, options: Options) => {
+const GlbLoader = (url: string, options: Options): Promise<GMM> => {
   const opt = { ...defaultOptions, ...options };
   const { onProcess, loop, castShadow, receiveShadow, material: mat } = opt;
 
@@ -44,7 +44,7 @@ const GlbLoader = (url: string, options: Options) => {
   dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
   loader.setDRACOLoader(dracoLoader);
 
-  return new Promise((res, rej) => {
+  return new Promise((resolve, rej) => {
     loader.load(
       url,
       (gltf: GLTF) => {
@@ -95,13 +95,13 @@ const GlbLoader = (url: string, options: Options) => {
           }
         });
 
-        const output: Output = {
+        const output: GMM = {
+          gltf,
           model,
           mixers,
-          gltf,
         };
 
-        res(output);
+        resolve(output);
       },
       (xhr) => {
         const { loaded, total } = xhr;

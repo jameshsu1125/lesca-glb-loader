@@ -28,6 +28,12 @@ const defaultOptions: Options = {
   },
 };
 
+type Output = {
+  model: THREE.Group;
+  mixers: THREE.AnimationMixer[];
+  gltf: GLTF;
+};
+
 const GlbLoader = (url: string, options: Options) => {
   const opt = { ...defaultOptions, ...options };
   const { onProcess, loop, castShadow, receiveShadow, material: mat } = opt;
@@ -41,11 +47,11 @@ const GlbLoader = (url: string, options: Options) => {
   return new Promise((res, rej) => {
     loader.load(
       url,
-      (eventTarget: GLTF) => {
+      (gltf: GLTF) => {
         const mixers: THREE.AnimationMixer[] = [];
-        const model: THREE.Group = eventTarget.scene;
+        const model: THREE.Group = gltf.scene;
 
-        eventTarget.animations.forEach((clip) => {
+        gltf.animations.forEach((clip) => {
           const ani = new THREE.AnimationMixer(model);
           if (loop) {
             ani.clipAction(clip).play().setLoop(THREE.LoopRepeat, Infinity);
@@ -56,7 +62,7 @@ const GlbLoader = (url: string, options: Options) => {
           mixers.push(ani);
         });
 
-        eventTarget.scene.traverse((node) => {
+        gltf.scene.traverse((node) => {
           const mesh = node;
           if (node instanceof THREE.Mesh) {
             const { name } = mesh;
@@ -89,7 +95,13 @@ const GlbLoader = (url: string, options: Options) => {
           }
         });
 
-        res({ model, mixers, eventTarget });
+        const output: Output = {
+          model,
+          mixers,
+          gltf,
+        };
+
+        res(output);
       },
       (xhr) => {
         const { loaded, total } = xhr;

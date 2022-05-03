@@ -38,6 +38,15 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(glb|gltf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { name: `model/[path][name].[ext]`, context: 'src' },
+          },
+        ],
+      },
     ],
   },
   plugins: [

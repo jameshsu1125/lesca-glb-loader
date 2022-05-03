@@ -6,7 +6,8 @@
       {
         "runtime": "automatic" // 只要用js[x]就不用import React from 'react';
       }
-    ]
+    ],
+    "@babel/preset-typescript"
   ],
   "plugins": [
     "@babel/plugin-proposal-object-rest-spread",

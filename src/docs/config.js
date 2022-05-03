@@ -1,4 +1,4 @@
 module.exports = {
-  name: 'lesca-',
-  description: '',
+  name: 'lesca-glb-loader',
+  description: 'load glb file simplified.',
 };

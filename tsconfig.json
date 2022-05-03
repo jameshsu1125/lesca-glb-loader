@@ -1,13 +1,20 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
-    "inlineSourceMap": true,
-    "module": "es6",
+    "outDir": "./lib/",
     "target": "es5",
+    "module": "AMD",
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowJs": true,
+    "paths": {
+      "*": ["./lib/*"]
+    }
   },
   "include": ["src/lib"]
 }

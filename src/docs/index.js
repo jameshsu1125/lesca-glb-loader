@@ -18,16 +18,18 @@ const App = () => {
         return <Demo />;
 
       case 'usage':
-        return <Usage />;
+        return (
+          <Container style={{ paddingTop: '70px' }}>
+            <Usage />
+          </Container>
+        );
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Navigation setState={setState} state={state} />
-      <Container style={{ paddingTop: '70px' }} maxWidth='lg'>
-        {appendPage()}
-      </Container>
+      {appendPage()}
     </ThemeProvider>
   );
 };

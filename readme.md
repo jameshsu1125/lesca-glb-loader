@@ -10,7 +10,7 @@
 
 load glb file simplified.
 
-#### [Live Demo](https://www.npmjs.com/~jameshsu1125)
+#### [Live Demo](https://jameshsu1125.github.io/lesca-glb-loader/)
 
 # Installation
 

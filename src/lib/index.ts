@@ -3,7 +3,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
 type Options = {
-  onProcess: (loaded: number, totle: number) => {};
+  onProcess: (loaded: number, total: number) => {};
   loop: boolean;
   castShadow: boolean | string[];
   receiveShadow: boolean | string[];
@@ -44,7 +44,7 @@ const GlbLoader = (url: string, options: Options): Promise<GMM> => {
   dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
   loader.setDRACOLoader(dracoLoader);
 
-  return new Promise((resolve, rej) => {
+  return new Promise((resolve, reject) => {
     loader.load(
       url,
       (gltf: GLTF) => {
@@ -108,7 +108,7 @@ const GlbLoader = (url: string, options: Options): Promise<GMM> => {
         onProcess(loaded, total);
       },
       () => {
-        rej(new Error(`[lesca-glb-loader] load ${url} error`));
+        reject(new Error(`[lesca-glb-loader] load ${url} error`));
       },
     );
   });
